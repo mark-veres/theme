@@ -1,0 +1,24 @@
+<script type="module">
+    import PhotoSwipeLightbox from "/js/photoswipe.js"
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#gallery',
+        children: 'a',
+        pswpModule: () => import('/js/ps-core.js')
+    })
+    lightbox.init()
+</script>
+
+<div class="pswp-gallery pswp-gallery--single-column" id="gallery">
+    {{ $files := .Page.Resources.ByType "image" }}
+    {{ range $i, $image := $files }}
+        <a href="{{ $image.RelPermalink }}"
+            target="_blank" data-pswp-width="{{ $image.Width }}"
+            data-pswp-height="{{ $image.Height }}">
+            <img src="{{ $image.RelPermalink }}" alt=""
+                loading="lazy"
+                id="{{ sub (len $files) $i }}"
+                width="{{ $image.Width }}"
+                height="auto">
+        </a>
+    {{ end }}
+</div>

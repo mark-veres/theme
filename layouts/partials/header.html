@@ -1,0 +1,19 @@
+<a href="{{ with .Parent}}{{ .RelPermalink }}{{ else }}/{{ end }}">
+    <img src="{{ or .Page.Params.img .Site.Params.pfp }}" alt="me">
+</a>
+<div>
+    <h1>{{ .Page.Title }}</h1>
+    {{ if eq .Section "posts" }}
+    <p>
+        Posted on
+        <time datetime="{{ time .Date }}">
+            {{ .Date | time.Format ":date_long" }}
+        </time>
+        |
+        Reading time
+        {{ .ReadingTime }} minute{{ if (ne .ReadingTime 1) }}s{{ end }}
+    </p>
+    {{ else }}
+        <p>{{ or .Page.Params.Description .Site.Params.Description }}</p>
+    {{ end }}
+</div>

@@ -1,0 +1,7 @@
+<aside>
+    <h1>
+        <a href="/">{{ .Site.Title }}</a>
+    </h1>
+    {{ partial "nav.html" . }}
+    {{ (.Site.GetPage "secondary.md").Content }}
+</aside>

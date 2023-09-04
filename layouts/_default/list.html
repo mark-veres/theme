@@ -1,0 +1,9 @@
+{{ define "main" }}
+    <div class="markdown-body">
+        {{ .Content }}
+    </div>
+    {{ if or .IsHome (eq .Section "posts") }}
+        {{ partial "post-entries.html" . }}
+        {{ template "_internal/pagination.html" . }}
+    {{ end }}
+{{ end }}

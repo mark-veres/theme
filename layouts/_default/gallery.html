@@ -1,0 +1,49 @@
+{{ define "main" }}
+    {{ .Content }}
+    <div>
+        {{ $pages := where .Pages "Section" "gallery" }}
+        {{ $paginator := .Paginate (sort $pages "Weight" "desc") 4 }}
+        
+        {{ range $i, $page := $paginator.Pages }}
+            <div class="header">
+                <a href="{{ $page.RelPermalink }}">
+                    <img src="{{ $page.Params.Img }}" alt="" />
+                </a>
+                <div>
+                    <a href="{{ $page.RelPermalink }}" style="text-decoration: none;">
+                        <h1>{{ .Title }}</h1>
+                    </a>
+                    <p>{{ .Description }}</p>
+                </div>
+            </div>
+        {{ end }}
+        {{ template "_internal/pagination.html" . }}
+        
+        <script type="module">
+            import PhotoSwipeLightbox from "/js/photoswipe.js"
+            const lightbox = new PhotoSwipeLightbox({
+                gallery: '#gallery',
+                children: 'a',
+                pswpModule: () => import('/js/ps-core.js')
+            })
+            lightbox.init()
+        </script>
+
+        <div class="pswp-gallery pswp-gallery--single-column" id="gallery">
+        {{ range $i, $page := sort $pages "Weight" "desc" }}
+            {{ $files := $page.Resources.ByType "image" }}
+            {{ range $i, $image := $files }}
+                <a href="{{ $image.RelPermalink }}"
+                    target="_blank" data-pswp-width="{{ $image.Width }}"
+                    data-pswp-height="{{ $image.Height }}">
+                    <img src="{{ $image.RelPermalink }}" alt=""
+                        loading="lazy"
+                        id="{{ sub (len $files) $i }}"
+                        width="{{ $image.Width }}"
+                        height="auto">
+                </a>
+            {{ end }}
+        {{ end }}
+        </div>
+    </div>
+{{ end }}

@@ -1,0 +1,14 @@
+<div class="latest">
+    {{ $pages := where .Site.Pages "Section" "gallery" | last 3 }}
+    {{ $photos := slice }}
+
+    {{ range $i, $page := sort $pages "Weight" "desc" }}
+        {{ $photos = $photos | append ($page.Resources.ByType "image") }}
+    {{ end }}
+
+    {{ range $i, $image := first (.Get 0) $photos }}
+        <a href="/gallery">
+            <img src="{{ ($image.Resize "100x").RelPermalink }}" alt="">
+        </a>
+    {{ end }}
+</div>

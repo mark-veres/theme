@@ -1,0 +1,24 @@
+{{ $paginator := $.Paginator }}
+{{ range $paginator.Pages }}
+    <article class="post-entry">
+        
+        <div>
+            <h2>
+                {{ if in .Params.Tags "satire" }}
+                <a href="/tags/satire" class="satire">satire</a>
+                {{ end }}
+                <a href="{{ .RelPermalink }}">
+                    {{ .Title }}
+                </a>
+            </h2>
+            <p>
+                <time datetime="{{ time .Date }}">
+                    {{ .Date | time.Format "2006-01-02" }}
+                </time> | {{ .Description | markdownify }}
+            </p>
+        </div>
+        {{ if isset .Params "img" }}
+            <img src="{{ .Params.Img | relURL }}" height="auto" alt="" loading="lazy" class="post-img" />
+        {{ end }}
+    </article>
+{{ end }}

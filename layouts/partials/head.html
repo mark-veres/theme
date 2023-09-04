@@ -1,0 +1,35 @@
+<title>{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} | {{ .Site.Title }} {{ end }}</title>
+<meta name="description" content="{{ .Description }}">
+<meta name="keywords" content="{{ if isset .Params "tags" }}{{ delimit .Params.tags ", " }}{{ end }}">
+<meta name="author" content="{{ or .Page.Params.Author .Site.Params.Author }}">
+
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="og:site_name" content="{{ .Site.Title }}">
+<meta name="og:title" content="{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} {{ end }}">
+<meta name="og:description" content="{{ .Description }}">
+<meta name="og:type" content="blog">
+<meta name="og:url" content="{{ .Params.hostName }}">
+{{ if isset .Params "img" }}
+    <meta name="og:image" content="{{ .Params.Img | absURL }}">
+{{ end }}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+<meta name="twitter:creator" content="">
+<meta name="twitter:title" content="{{ if .IsHome }} {{ .Site.Title }} {{ else }} {{ .Title }} {{ end }}">
+<meta name="twitter:description" content="{{ .Description }}">
+{{ if isset .Params "img" }}
+    <meta name="twitter:image" content="{{ .Params.Img | absURL }}">
+{{ end }}
+
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/markdown.css">
+{{ if eq .Section "gallery" }}
+    <link rel="stylesheet" href="/assets/css/photoswipe.css">
+{{ end }}
