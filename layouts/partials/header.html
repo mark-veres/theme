@@ -17,3 +17,4 @@
         <p>{{ or .Page.Params.Description .Site.Params.Description }}</p>
     {{ end }}
 </div>
+<button onclick='let x = document.querySelector("aside"); x.classList = x.classList[0] == "open" ? [] : ["open"]'>&#9776;</button>
