@@ -100,6 +100,8 @@ aside p {
 @media screen and (max-width: 1000px) {
     .column {
         width: 100%;
+        margin: 0;
+        max-width: 92vw;
     }
 }
 
@@ -144,7 +146,7 @@ header button {
 @media screen and (max-width: 700px) {
     aside {
         display: none;
-        position: absolute;
+        position: fixed;
     }
 
     header {
@@ -153,6 +155,10 @@ header button {
 
     header button {
         display: block;
+    }
+
+    header img {
+        display: none !important;
     }
 
     body:target aside {
@@ -311,4 +317,16 @@ header button {
 .open {
     width: 13.5rem;
     display: block;
+}
+
+.footnote-ref::before {
+    content: "["
+}
+
+.footnote-ref::after {
+    content: "]"
+}
+
+.closeable-section summary * {
+    margin-top: 0 !important;
 }

@@ -28,8 +28,11 @@
 
 <meta name="robots" content="index, follow">
 
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?new=2">
 <link rel="stylesheet" href="/assets/css/markdown.css">
 {{ if eq .Section "gallery" }}
+    <link rel="stylesheet" href="/assets/css/photoswipe.css">
+{{ end }}
+{{ if eq .Section "plates" }}
     <link rel="stylesheet" href="/assets/css/photoswipe.css">
 {{ end }}

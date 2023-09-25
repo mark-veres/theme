@@ -1,7 +1,7 @@
-{{ $paginator := $.Paginator }}
+{{ $pages := (where .Site.RegularPages "Section" "posts") }}
+{{ $paginator := .Paginate $pages }}
 {{ range $paginator.Pages }}
     <article class="post-entry">
-        
         <div>
             <h2>
                 {{ if in .Params.Tags "satire" }}

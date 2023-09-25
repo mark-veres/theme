@@ -5,5 +5,14 @@
     {{ if or .IsHome (eq .Section "posts") }}
         {{ partial "post-entries.html" . }}
         {{ template "_internal/pagination.html" . }}
+    {{ else }}
+        <ul>
+            {{ range (where .Pages "Section" "!=" "") }}
+                <li>
+                    <time datetime="{{ time .Date }}">{{ .Date.Format "2006/01/02" }}</time>
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </li>
+            {{ end }}
+        </ul>
     {{ end }}
 {{ end }}
